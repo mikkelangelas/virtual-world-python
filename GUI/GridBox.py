@@ -2,9 +2,6 @@ from PyQt6.QtWidgets import *
 from .GridField import GridField
 
 
-# todo repair this shit
-
-
 class GridBox(QWidget):
     def __init__(self, world):
         super().__init__()
@@ -12,17 +9,20 @@ class GridBox(QWidget):
         self.world = world
 
         self.grid_layout = QGridLayout()
-        self.grid_layout.setSpacing(20)
+        self.grid_layout.setVerticalSpacing(0)
+        self.grid_layout.setHorizontalSpacing(0)
+        self.resize(world.width * 20, world.height * 20)
 
-        self.field_array = [[]]
-
+        self.field_array = list()
         for i in range(self.world.height):
+            self.field_array.append(list())
             for j in range(self.world.width):
-                self.field_array[i][j] = GridField(self.world, j, i)
-                self.grid_layout.addWidget(self.field_array[i][j], j + 1, i + 1)
+                self.field_array[i].append(GridField(self.world, j, i))
+                self.grid_layout.addWidget(self.field_array[i][j], i, j)
 
         self.setLayout(self.grid_layout)
 
     def get_grid(self, x, y):
         return self.field_array[y][x]
+
 
