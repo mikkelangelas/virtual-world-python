@@ -27,8 +27,8 @@ class World:
         # not borken anymore
         for _ in range(init_size):
             r = random.randint(1, 12)
-            rx = random.randint(0, self.width - 1)
-            ry = random.randint(0, self.height - 1)
+            rx = random.randint(1, self.width - 1)
+            ry = random.randint(1, self.height - 1)
             if r == 1:
                 self.organisms.append(Wolf(rx, ry, self))
             elif r == 2:
@@ -54,16 +54,31 @@ class World:
 
             self.occupied += 1
 
+    def update_world(self):
+        for o in self.organisms:
+            if o.dead is False:
+                self.window.grid.get_grid(o.x, o.y).set_occupation(o)
+
     def turn(self, player_input=0):
         self.sort_by_init()
+
         for o in self.organisms:
-            if isinstance(o, Human):
-                o.action(player_input)
-            else:
-                o.action()
+            if o.dead is False:
+                if isinstance(o, Human):
+                    o.action(player_input)
+                else:
+                    o.action()
+
+        self.dispose_of_deceased()
+        self.update_world()
 
     def sort_by_init(self):
         self.organisms.sort(key=lambda o: (o.init, o.age), reverse=True)
+
+    def dispose_of_deceased(self):
+        for o in self.organisms:
+            if o.dead is True:
+                self.organisms.remove(o)
 
     def is_free(self, x, y):
         for o in self.organisms:
@@ -88,6 +103,13 @@ class World:
         else:
             return None, None
 
+    def get_organism_by_pos(self, x, y):
+        for o in self.organisms:
+            if o.x == x and o.y == y:
+                return o
+
+        return None
+
     def send_alert(self, text):
         self.window.alerts.add_alert(text)
 
@@ -97,6 +119,16 @@ class World:
                 return o
 
         return None
+
+    def get_heracleum(self, s):
+        h = None
+
+        for o in self.organisms:
+            if isinstance(o, Heracleum) and o.is_targeted is False:
+                if h is None or abs(s.x - o.x) < abs(s.x - h.x) or abs(s.y - o.y) < abs(s.y - h.y):
+                    h = o
+
+        return h
 
     def save_state(self):
         handle = open("state.txt", "w")

@@ -13,7 +13,11 @@ class Plant(Organism, ABC):
     def action(self):
         r = random.randint(1, 100)
         if r == 1:
-            self.world.organisms.append(self.reproduce())
+            new_o = self.reproduce()
+            if new_o is not None:
+                self.world.organisms.append(new_o)
+                self.world.send_alert("New " + self.__str__() + " grew")
 
     def collision(self, other):
         self.die()
+        self.world.send_alert(self.__str__() + " was eaten by " + other.__str__())

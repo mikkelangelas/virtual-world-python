@@ -6,6 +6,8 @@ class Wolf(Animal):
         super().__init__(x, y, world)
         self.str = 9
         self.init = 5
+        self.label = 'w'
+        self.color = "#777f77"
 
     def reproduce(self):
         x, y = self.world.get_free_adj(self.x, self.y)

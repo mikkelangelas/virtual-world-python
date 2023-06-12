@@ -29,11 +29,12 @@ class GridField(QWidget):
     def set_occupation(self, o):
         self.spawn_button.setStyleSheet("background-color:"+o.color+";"+"border:none;")
         self.spawn_button.setText(o.label)
-        pass
+        self.update()
 
     def free_occupation(self):
         self.spawn_button.setStyleSheet("background-color:black;border:none;")
         self.spawn_button.setText("")
+        self.update()
 
     def init_spawn(self):
         self.spawn_window = SpawnBox(self.world, self.spawn_x, self.spawn_y)

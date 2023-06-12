@@ -5,6 +5,8 @@ class Dandelion(Plant):
     def __init__(self, x, y, world):
         super().__init__(x, y, world)
         self.str = 0
+        self.label = 'd'
+        self.color = "#Eccc29"
 
     def action(self):
         for i in range(3):

@@ -5,6 +5,8 @@ class Guarana(Plant):
     def __init__(self, x, y, world):
         super().__init__(x, y, world)
         self.str = 0
+        self.label = 'g'
+        self.color = "#Cb4317"
 
     def collision(self, other):
         other.str += 3

@@ -5,6 +5,8 @@ class Nightshade(Plant):
     def __init__(self, x, y, world):
         super().__init__(x, y, world)
         self.str = 99
+        self.label = 'n'
+        self.color = "#1f3a6e"
 
     def collision(self, other):
         other.die()

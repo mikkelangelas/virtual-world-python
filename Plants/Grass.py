@@ -5,6 +5,8 @@ class Grass(Plant):
     def __init__(self, x, y, world):
         super().__init__(x, y, world)
         self.str = 0
+        self.label = ','
+        self.color = "#49cb17"
 
     def reproduce(self):
         x, y = self.world.get_free_adj(self.x, self.y)

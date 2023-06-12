@@ -6,6 +6,8 @@ class Sheep(Animal):
         super().__init__(x, y, world)
         self.str = 4
         self.init = 4
+        self.label = 's'
+        self.color = "#E4dad4"
 
     def reproduce(self):
         x, y = self.world.get_free_adj(self.x, self.y)

@@ -29,3 +29,8 @@ class Organism(ABC):
 
     def die(self):
         self.dead = True
+
+    def check_collision(self):
+        for o in self.world.organisms:
+            if self.x == o.x and self.y == o.y and o != self and o.dead is False:
+                o.collision(self)
