@@ -81,11 +81,10 @@ class MainWindow(QMainWindow):
         self.game_widget.setLayout(self.game_layout)
 
         self.setCentralWidget(self.game_widget)
-
         self.world.update_world()
 
     def keyPressEvent(self, key_event):
         k = key_event.key()
         if k == Qt.Key.Key_Up.value or k == Qt.Key.Key_Right.value or k == Qt.Key.Key_Down.value or k == Qt.Key.Key_Left.value:
-            if self.world is not None:
+            if self.world is not None and self.world.get_human() is not None:
                 self.world.turn(k)

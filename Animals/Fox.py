@@ -11,6 +11,7 @@ class Fox(Animal):
         self.color = "#Cb7523"
 
     def action(self):
+        self.free_field()
         r = random.randint(0, 3)
 
         if r == 0 and self.x < self.world.width - 1:
@@ -25,6 +26,8 @@ class Fox(Animal):
         elif r == 3 and self.y > 0:
             if self.world.is_free(self.x, self.y - 1) or self.world.get_organism_by_pos(self.x, self.y - 1).str < self.str:
                 self.confirm_move(self.x, self.y - 1)
+
+        self.check_collision()
 
     def reproduce(self):
         x, y = self.world.get_free_adj(self.x, self.y)

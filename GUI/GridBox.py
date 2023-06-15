@@ -9,8 +9,7 @@ class GridBox(QWidget):
         self.world = world
 
         self.grid_layout = QGridLayout()
-        self.grid_layout.setVerticalSpacing(0)
-        self.grid_layout.setHorizontalSpacing(0)
+        self.grid_layout.setSpacing(0)
         self.resize(world.width * 20, world.height * 20)
 
         self.field_array = list()
@@ -25,4 +24,7 @@ class GridBox(QWidget):
     def get_grid(self, x, y):
         return self.field_array[y][x]
 
-
+    def wipe_grid(self):
+        for i in range(self.world.height):
+            for j in range(self.world.width):
+                self.field_array[i][j].free_occupation()

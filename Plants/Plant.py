@@ -16,6 +16,7 @@ class Plant(Organism, ABC):
             new_o = self.reproduce()
             if new_o is not None:
                 self.world.organisms.append(new_o)
+                self.world.increase_occupied()
                 self.world.send_alert("New " + self.__str__() + " grew")
 
     def collision(self, other):

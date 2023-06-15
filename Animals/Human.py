@@ -47,5 +47,9 @@ class Human(Animal):
             self.cooldown = 10
             self.invincible = True
 
+    def set_invincibility(self, cooldown, invincible):
+        self.cooldown = cooldown
+        self.invincible = invincible
+
     def __str__(self):
         return "Human"

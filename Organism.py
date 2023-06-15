@@ -29,6 +29,7 @@ class Organism(ABC):
 
     def die(self):
         self.dead = True
+        self.world.decrease_occupied()
 
     def check_collision(self):
         for o in self.world.organisms:

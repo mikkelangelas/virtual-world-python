@@ -14,3 +14,6 @@ class AlertBox(QWidget):
 
     def add_alert(self, text):
         self.alert_area.append(text)
+
+    def wipe_alerts(self):
+        self.alert_area.clear()

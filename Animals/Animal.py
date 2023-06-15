@@ -31,6 +31,7 @@ class Animal(Organism, ABC):
             new_o = self.reproduce()
             if new_o is not None:
                 self.world.organisms.append(new_o)
+                self.world.increase_occupied()
                 self.world.send_alert("New " + self.__str__() + " was born")
         else:
             if self.str > other.str:
