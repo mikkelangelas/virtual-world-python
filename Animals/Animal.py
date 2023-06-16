@@ -26,7 +26,7 @@ class Animal(Organism, ABC):
         self.check_collision()
 
     def collision(self, other):
-        if type(self) == type(other):
+        if type(self) == type(other) and self.age != 0 and other.age != 0:
             other.return_to_last()
             new_o = self.reproduce()
             if new_o is not None:

@@ -16,7 +16,7 @@ class GridField(QWidget):
         self.label = None
 
         self.spawn_button = QPushButton()
-        self.spawn_button.setMaximumSize(20, 20)
+        self.spawn_button.setFixedSize(20, 20)
         self.spawn_button.setStyleSheet("background-color:black;border:none;")
         self.spawn_button.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.spawn_button.clicked.connect(self.init_spawn)

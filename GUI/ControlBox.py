@@ -45,11 +45,11 @@ class ControlBox(QWidget):
     def update_skill_status(self):
         cooldown = getattr(self.world.get_human(), "cooldown")
         if cooldown == 0:
-            self.skill_info.setText("Skill is ready to use!")
+            self.skill_info.setText("Ready to use!")
         elif cooldown > 5:
-            self.skill_info.setText("Skill is active: " + str(cooldown - 5))
+            self.skill_info.setText("Active: " + str(cooldown - 5))
         else:
-            self.skill_info.setText("Skill is on cooldown: " + str(cooldown))
+            self.skill_info.setText("Cooldown: " + str(cooldown))
 
     def activate_skill(self):
         self.world.get_human().activate_skill()

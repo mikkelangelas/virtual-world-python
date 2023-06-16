@@ -23,6 +23,9 @@ class Organism(ABC):
     def reproduce(self):
         pass
 
+    def increase_age(self):
+        self.age += 1
+
     def return_to_last(self):
         self.x = self.last_x
         self.y = self.last_y

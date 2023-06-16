@@ -14,7 +14,7 @@ class Plant(Organism, ABC):
         r = random.randint(1, 100)
         if r == 1:
             new_o = self.reproduce()
-            if new_o is not None:
+            if new_o is not None and self.age != 0:
                 self.world.organisms.append(new_o)
                 self.world.increase_occupied()
                 self.world.send_alert("New " + self.__str__() + " grew")

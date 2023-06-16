@@ -77,6 +77,7 @@ class World:
                     o.action(player_input)
                 else:
                     o.action()
+                o.increase_age()
 
         self.dispose_of_deceased()
         self.update_world()
